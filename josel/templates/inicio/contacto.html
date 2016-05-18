@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Contactanos {% endblock %}
+
+{% block content %}
+
+<div class="container" style="padding-top: 50px;color:#424242">
+	<div class="row">
+		<div class="col-xs-6 col-md-3 col-xs-3 col-lg-12" >
+		
+			<form action="" method="POST"  >
+				{% csrf_token %}
+				{{form.as_p}}	
+
+				<input class="btn btn-success" type="submit" value="Enviar" />
+				
+			</form>
+			
+		</div>
+		
+
+		<div class=" visible-lg visible-md col-md-offset-2 col-md-7" >
+
+		<h2>Contactanos...</h2>
+		<hr>
+		<h4 class="caption">En nuestro Consejo Comunal <b>José Leonardo Chirino</b> queremos mantener una relaci&oacute;n estrecha con nuestra Comunidad. Si usted desea hacernos alguna solicitud, aclarar una duda o realizar alg&uacute;n comentario, no dude en contactarnos, que a la brevedad posible responderemos a su requerimiento. 
+		<br>Gracias por apoyarnos...</h4>
+		<hr>
+		<h5><i><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Teléfono : 0416097455</i></h5>
+		<h5><i><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  Correo : ccjoseleonardo@gmail.com</i></h5>
+		<h5><i><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Facebook : <a href="https://facebook.com" >JoséLeonardoChirino</a> </i></h5>
+
+		</div>
+		
+	</div>
+</div>
+
+{% endblock %}

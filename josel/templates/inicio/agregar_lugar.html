@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Agregar Lugar {% endblock %}
+
+{% block content %}
+	
+
+<div class="container " style="font-size:11px;color:#6E6E6E">
+<br>
+<div class="col-xs-8">
+<div id="googleMap" style="width:600px;height:500px;"></div>
+</div>
+<div class="col-xs-2">
+<div id="datos">
+	<div id="form">
+		<form action="." method="POST"  enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+
+	<input type="submit" class="btn btn-success" value="Grabar" >
+
+
+	</form>
+	</div>
+	<div id="data"></div>
+</div>
+</div>
+</div>
+{% endblock %}

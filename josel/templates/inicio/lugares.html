@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Lugares {% endblock %}
+
+{% block content %}
+{% if lugares %}
+<br>
+<div class="container ">
+<div align="center">  <h3>Haga Click en un punto para ver la información del lugar</h3></div>
+<div class="row">
+<div class="col-xs-12">
+
+{% for lu in lugares %}
+
+{% endfor %}
+
+</div>
+</div>
+
+
+<div class="col-xs-12">
+<script>
+
+
+
+  var locations = [
+  {% for l in lugares %}
+      ['<div class="col-xs-12" style="font-size:12px"><b style="color:#01A9DB">{{l.nombre}}</b><br>{{l.descripcion}}<div visible-md "><a href="/media/{{l.imagen}}" target="_BLANK"><img src="/media/{{l.thumbnail}}"  class="img-responsive img-thumbnail"/></a></div><br><i style="color:#01A9DB">Dirección: {{l.direccion}}</i></div>', {{l.lat}}, {{l.lng}}, {{l.id}}],
+     {% endfor %}
+    ];
+	
+
+</script>	
+
+
+	
+
+
+</div>
+
+
+<script>
+function initialize()
+{
+ var map = new google.maps.Map(document.getElementById('lugaresMap'), {
+      zoom: 17,
+      center: new google.maps.LatLng(10.091119011848654, -69.32686198147582),
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>	
+<div id="lugaresMap" style="width:800px;height:500px;" class="img-thumbnail"></div>
+</div>
+</div>
+
+
+{% endif %}
+{% endblock %}
